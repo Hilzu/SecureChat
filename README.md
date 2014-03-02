@@ -7,3 +7,4 @@ SecureChat
 * The server transmits and buffers the encrypted messages (direct connections not really possible because NAT and other crap)
 * One message can have multiple recipients
 * This should be secure from eavesdropping but still easy to use
+* Made as a course work for NodeJS project at University of Helsinki.
