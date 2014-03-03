@@ -16,7 +16,7 @@
 
 module.exports = function (grunt) {
 
-
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   /**
    * CSS files to inject in order
@@ -180,6 +180,10 @@ module.exports = function (grunt) {
           '.tmp/public/jst.js': templateFilesToInject
         }
       }
+    },
+
+    jshint: {
+      all: ['Gruntfile.js', 'app.js', 'api/**/*.js', 'config/**/*.js']
     },
 
     less: {
