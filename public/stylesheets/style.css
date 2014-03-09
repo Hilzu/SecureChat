@@ -5,3 +5,21 @@ body {
 a {
   color: #00B7FF;
 }
+
+span.timestamp {
+  margin-right: 1em;
+  color: #808080;
+}
+
+span.sender {
+  font-weight: bold;
+}
+span.receiver {
+  font-weight: bold;
+  margin-right: 1em;
+}
+
+ul#messagesList {
+  list-style-type: none;
+  padding-left: 0;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SecureChat</title>
+  <link rel='stylesheet' href='/stylesheets/bootstrap.css'>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <a class="navbar-brand">SecureChat</a>
+  </div>
+</nav>
+
+<p><strong>Your ID </strong><span id="userPublicKey"></span></p>
+
+<h2>Messages</h2>
+<div id="messages">
+
+</div>
+
+<form role="form" action="/messages" method="post" id="sendMessageForm">
+  <input type="hidden" name="sender">
+  <div class="form-group">
+    <label for="receiverInput">Receiver</label>
+    <input name="receiver" type="text" class="form-control" id="receiverInput"
+           placeholder="Write receiver here">
+  </div>
+  <div class="form-group">
+    <label for="messageInput">Message</label>
+    <textarea name="message" id="messageInput" class="form-control" rows="5"
+              placeholder="Write message here"></textarea>
+  </div>
+  <button type="submit" class="btn btn-default">Send</button>
+</form>
+
+<script src='/javascripts/jquery-1.11.0.js'></script>
+<script src='/javascripts/bootstrap.js'></script>
+<script src='/javascripts/application.js'></script>
+</body>
+</html>
