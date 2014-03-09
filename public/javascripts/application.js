@@ -23,4 +23,13 @@ app.loadMessages = function() {
 $(document).ready(function() {
   app.loadPublicKey();
   app.loadMessages();
+
+  $('#sendMessageForm').submit(function(event) {
+    var formValues;
+    event.preventDefault();
+    formValues = $(this).serialize();
+    $.post('/messages', formValues, function(data) {
+      app.loadMessages();
+    });
+  });
 });

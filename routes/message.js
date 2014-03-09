@@ -1,9 +1,9 @@
 var Message = require('../models/Message.js');
 
-exports.add = function(req, res, next) {
+exports.add = function(req, res) {
   var msg;
   if (!req.body || !req.body.sender || !req.body.receiver || !req.body.message) {
-    next(new Error('Not enough data provided'));
+    res.json(400, {error: 'All parameters not given'});
   } else {
     msg = new Message({
       sender: req.body.sender,
@@ -13,9 +13,9 @@ exports.add = function(req, res, next) {
     });
     msg.save(function(err, msg) {
       if (err) {
-        next(new Error(err));
+        res.json(500, {error: err});
       } else {
-        res.redirect('/');
+        res.json(201, msg);
       }
     });
   }
