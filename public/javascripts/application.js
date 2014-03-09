@@ -20,16 +20,35 @@ app.loadMessages = function() {
   });
 };
 
-$(document).ready(function() {
-  app.loadPublicKey();
-  app.loadMessages();
+app.chatView = function() {
+  $('#content').load('chat.html', function() {
+    app.loadPublicKey();
+    app.loadMessages();
 
-  $('#sendMessageForm').submit(function(event) {
-    var formValues;
-    event.preventDefault();
-    formValues = $(this).serialize();
-    $.post('/messages', formValues, function(data) {
-      app.loadMessages();
+    $('#sendMessageForm').submit(function(event) {
+      var formValues;
+      event.preventDefault();
+      formValues = $(this).serialize();
+      $.post('/messages', formValues, function(data) {
+        app.loadMessages();
+      });
     });
   });
+};
+
+app.keysView = function() {
+  $('#content').load('keys.html');
+};
+
+$(document).ready(function() {
+  app.chatView();
+
+  $('#chatViewLink').click(function(event) {
+    event.preventDefault();
+    app.chatView();
+  });
+  $('#keysViewLink').click(function(event) {
+    event.preventDefault();
+    app.keysView();
+  })
 });
