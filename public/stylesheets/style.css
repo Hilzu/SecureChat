@@ -14,12 +14,13 @@ span.timestamp {
 span.sender {
   font-weight: bold;
 }
+
 span.receiver {
   font-weight: bold;
   margin-right: 1em;
 }
 
-ul#messagesList {
+ul.messages {
   list-style-type: none;
   padding-left: 0;
 }

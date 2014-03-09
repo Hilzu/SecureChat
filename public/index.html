@@ -19,9 +19,15 @@
 <p><strong>Your ID </strong><span id="userPublicKey"></span></p>
 
 <h2>Messages</h2>
-<div id="messages">
-
-</div>
+<ul class="messages">
+  <li>
+    <span class="timestamp"></span>
+    <span class="sender"></span>
+    ->
+    <span class="receiver"></span>
+    <span class="message"></span>
+  </li>
+</ul>
 
 <form role="form" action="/messages" method="post" id="sendMessageForm">
   <input type="hidden" name="sender">
@@ -40,6 +46,7 @@
 
 <script src='/javascripts/jquery-1.11.0.js'></script>
 <script src='/javascripts/bootstrap.js'></script>
+<script src='/javascripts/transparency.js'></script>
 <script src='/javascripts/application.js'></script>
 </body>
 </html>
