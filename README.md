@@ -1,6 +1,6 @@
 SecureChat
 ==========
-Made as a course work for NodeJS project at University of Helsinki.
+Made as a course work for NodeJS project at University of Helsinki. [Tuntikirjanpito](https://docs.google.com/spreadsheet/ccc?key=0AkcDH1NhEuS1dDlVVE1NNVlwaVg2Z2lwVjEtaW5sUlE&usp=sharing)
 
 * Send messages to other users
 * All users have a public/private key pair
