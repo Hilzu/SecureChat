@@ -10,33 +10,42 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse"
-              data-target="#navbarContent">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">SecureChat</a>
-    </div>
-    <div class="collapse navbar-collapse" id="navbarContent">
-      <ul class="nav navbar-nav">
-        <li><a href="#" id="chatViewLink">Chat</a></li>
-        <li><a href="#" id="keysViewLink">Keys</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div class="container">
 
-<div id="content">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#navbarContent">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">SecureChat</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="nav navbar-nav">
+          <li><a href="#" id="chatViewLink">Chat</a></li>
+          <li><a href="#" id="keysViewLink">Keys</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <p id="flash" class="bg-danger"></p>
+
+  <div id="content">
+  </div>
+
 </div>
 
 <script src='/javascripts/jquery-1.11.0.js'></script>
 <script src='/javascripts/bootstrap.js'></script>
+<script src="/javascripts/sha.js"></script>
+<script src="/javascripts/jsencrypt.js"></script>
 <script src='/javascripts/transparency.js'></script>
 <script src='/javascripts/application.js'></script>
+
 </body>
 </html>

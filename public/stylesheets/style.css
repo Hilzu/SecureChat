@@ -24,3 +24,11 @@ ul.messages {
   list-style-type: none;
   padding-left: 0;
 }
+
+#flash {
+  padding: 1em;
+}
+
+#flash:empty {
+  display: none;
+}

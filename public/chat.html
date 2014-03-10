@@ -1,26 +1,25 @@
-<p><strong>Your ID </strong><span id="userPublicKey"></span></p>
+<dl>
+  <dt>Your public key</dt>
+  <dd id="userPublicKey"></dd>
+</dl>
 
 <h2>Messages</h2>
 <ul class="messages">
   <li>
-    <span class="timestamp"></span>
-    <span class="sender"></span>
-    ->
-    <span class="receiver"></span>
-    <span class="message"></span>
+    <div class="msg"></div>
   </li>
 </ul>
 
-<form role="form" action="/messages" method="post" id="sendMessageForm">
+<form role="form" id="sendMessageForm">
   <input type="hidden" name="sender">
   <div class="form-group">
     <label for="receiverInput">Receiver</label>
-    <input name="receiver" type="text" class="form-control" id="receiverInput"
-           placeholder="Write receiver here">
+    <textarea name="receiver" class="form-control" rows="6" id="receiverInput"
+              placeholder="Paste receivers public key here"></textarea>
   </div>
   <div class="form-group">
     <label for="messageInput">Message</label>
-    <textarea name="message" id="messageInput" class="form-control" rows="5"
+    <textarea name="message" id="messageInput" class="form-control" rows="6"
               placeholder="Write message here"></textarea>
   </div>
   <button type="submit" class="btn btn-default">Send</button>

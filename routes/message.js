@@ -2,6 +2,7 @@ var Message = require('../models/Message.js');
 
 exports.add = function(req, res) {
   var msg;
+  console.log(req.body);
   if (!req.body || !req.body.sender || !req.body.receiver || !req.body.message) {
     res.json(400, {error: 'All parameters not given'});
   } else {
@@ -22,7 +23,7 @@ exports.add = function(req, res) {
 };
 
 exports.list = function(req, res) {
-  Message.find(function(err, messages) {
+  Message.find({receiver: req.params.receiver}, function(err, messages) {
     if (err) {
       res.json(500, {error: err});
     } else {
