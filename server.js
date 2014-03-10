@@ -12,7 +12,9 @@ var
   db;
 
 app = express();
-mongoose.connect('mongodb://localhost/SecureChat?auto_reconnect');
+var mongoUri = process.env.MONGOLAB_URI ||
+  'mongodb://localhost/SecureChat?auto_reconnect';
+mongoose.connect(mongoUri);
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
