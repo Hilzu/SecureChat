@@ -1,10 +1,17 @@
 SecureChat
 ==========
+Made as a course work for NodeJS project at University of Helsinki.
 
-* Every user has a private/public key pair
-* Users can get public keys of other users from the server
-* Users send messages to other users encrypted with the public keys
-* The server transmits and buffers the encrypted messages (direct connections not really possible because NAT and other crap)
-* One message can have multiple recipients
-* This should be secure from eavesdropping but still easy to use
-* Made as a course work for NodeJS project at University of Helsinki.
+* Send messages to other users
+* All users have a public/private key pair
+* Message receiver is set using public key
+* Messages are encrypted client-side
+* Server saves encrypted messages and delivers them to clients
+* Eavesdropping should be impossible, since server doesn't know the contents of the messages
+
+
+## Usage
+
+    npm install # Install all dependencies
+    mongod # Start MongoDB on default port
+    npm start # Start server
