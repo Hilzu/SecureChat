@@ -1,6 +1,5 @@
 var
   express = require('express'),
-  http = require('http'),
   path = require('path'),
   logger = require('morgan'),
   bodyParser = require('body-parser'),
@@ -14,13 +13,15 @@ var
 app = express();
 var mongoUri = process.env.MONGOLAB_URI ||
   'mongodb://localhost/SecureChat?auto_reconnect';
-mongoose.connect(mongoUri);
+mongoose.connect(mongoUri, function (err) {
+  if (err) {
+    throw "Couldn't connect to MongoDB: " + err;
+  }
+});
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(app.router);
 
 app.param('receiver', function(req, res, next, receiver_id) {
   req.receiver = receiver_id;
