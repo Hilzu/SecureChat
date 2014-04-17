@@ -1,7 +1,7 @@
 var User = require('../models/User.js');
 
-exports.get = function(req, res) {
-  User.find({hash: req.params.user}, function(err, user) {
+exports.get = function (req, res) {
+  User.find({hash: req.params.user}, function (err, user) {
     if (err) {
       res.json(500, {error: err});
     } else if (!user) {
@@ -12,13 +12,13 @@ exports.get = function(req, res) {
   });
 };
 
-exports.add = function(req, res) {
+exports.add = function (req, res) {
   var user;
   if (!req.body || !req.body.hash || !req.body.publicKey) {
     res.json(400, {error: 'All parameters not given'});
   } else {
     user = new User({hash: req.body.hash, publicKey: req.body.publicKey});
-    user.save(function(err, user) {
+    user.save(function (err, user) {
       if (err) {
         res.json(500, {error: err});
       } else {

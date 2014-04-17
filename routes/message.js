@@ -1,6 +1,6 @@
 var Message = require('../models/Message.js');
 
-exports.add = function(req, res) {
+exports.add = function (req, res) {
   var msg;
   console.log(req.body);
   if (!req.body || !req.body.sender || !req.body.receiver || !req.body.message) {
@@ -12,7 +12,7 @@ exports.add = function(req, res) {
       message: req.body.message,
       timestamp: new Date()
     });
-    msg.save(function(err, msg) {
+    msg.save(function (err, msg) {
       if (err) {
         res.json(500, {error: err});
       } else {
@@ -22,8 +22,8 @@ exports.add = function(req, res) {
   }
 };
 
-exports.list = function(req, res) {
-  Message.find({receiver: req.params.receiver}, function(err, messages) {
+exports.list = function (req, res) {
+  Message.find({receiver: req.params.receiver}, function (err, messages) {
     if (err) {
       res.json(500, {error: err});
     } else {
