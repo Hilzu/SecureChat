@@ -1,6 +1,8 @@
+'use strict';
+
 var mongoose = require('mongoose');
 
-messageSchema = mongoose.Schema({
+var messageSchema = mongoose.Schema({
   sender: String,
   receiver: String,
   message: String,

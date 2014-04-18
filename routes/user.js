@@ -1,3 +1,5 @@
+'use strict';
+
 var User = require('../models/User.js');
 
 exports.get = function (req, res) {
@@ -5,7 +7,7 @@ exports.get = function (req, res) {
     if (err) {
       res.json(500, {error: err});
     } else if (!user) {
-      res.json(404, {error: "User not found"});
+      res.json(404, {error: 'User not found'});
     } else {
       res.json(user);
     }

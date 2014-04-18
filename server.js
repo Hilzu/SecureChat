@@ -1,9 +1,11 @@
+'use strict';
 
 var express = require('express');
-var path = require('path');
 var logger = require('morgan');
-var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var path = require('path');
+
+var User = require('./models/User');
 var messages = require('./routes/message');
 var users = require('./routes/user');
 
@@ -11,25 +13,26 @@ var app;
 var mongoUri;
 
 app = express();
+
 mongoUri = process.env.MONGOLAB_URI ||
   'mongodb://localhost/SecureChat?auto_reconnect';
 mongoose.connect(mongoUri, function (err) {
   if (err) {
-    throw "Couldn't connect to MongoDB: " + err;
+    throw 'Couldn\'t connect to MongoDB: ' + err;
   }
 });
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
+app.use(require('body-parser').json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.param('receiver', function (req, res, next, receiver_id) {
-  req.receiver = receiver_id;
+app.param('receiver', function (req, res, next, receiverId) {
+  req.receiver = receiverId;
   next();
 });
 
-app.param('user_id', function (req, res, next, user_id) {
-  User.find({hash: user_id}, function (err, user) {
+app.param('user_id', function (req, res, next, userId) {
+  User.find({hash: userId}, function (err, user) {
     if (err) {
       next(err);
     } else {
@@ -51,7 +54,7 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
   res.json(err.status, {error: err.message});
 });
 

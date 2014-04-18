@@ -1,9 +1,10 @@
+'use strict';
+
 var Message = require('../models/Message.js');
 
 exports.add = function (req, res) {
   var msg;
-  console.log(req.body);
-  if (!req.body || !req.body.sender || !req.body.receiver || !req.body.message) {
+  if (!req.body.sender || !req.body.receiver || !req.body.message) {
     res.json(400, {error: 'All parameters not given'});
   } else {
     msg = new Message({

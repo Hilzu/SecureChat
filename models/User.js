@@ -1,6 +1,8 @@
+'use strict';
+
 var mongoose = require('mongoose');
 
-userSchema = mongoose.Schema({
+var userSchema = mongoose.Schema({
   publicKey: String,
   hash: String
 });
