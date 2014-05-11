@@ -1,7 +1,7 @@
 SecureChat
 ==========
-Originally course work for NodeJS project at University of Helsinki. Front-end
- rewritten for AngularJS project.
+Send secure messages to other users. The front-end doesn't work currently and is
+pending a rewrite.
 
 * Send messages to other users
 * All users have a public/private key pair
@@ -21,3 +21,11 @@ the messages
 
     # Start server
     npm start
+
+## Developing
+    # Run tests
+    npm test
+
+    # Watch for changes, restart server and check files with JSHint
+    npm install -g gulp
+    gulp develop
