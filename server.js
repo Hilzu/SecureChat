@@ -7,21 +7,19 @@ var path = require('path');
 
 var messages = require('./routes/messages');
 var users = require('./routes/users');
+var config = require('./lib/config');
 
 var app;
-var mongoUri;
 
 app = express();
 
-mongoUri = process.env.MONGOLAB_URI ||
-  'mongodb://localhost/SecureChat?auto_reconnect';
-mongoose.connect(mongoUri, function (err) {
+mongoose.connect(config.mongoUri, function (err) {
   if (err) {
     throw 'Couldn\'t connect to MongoDB: ' + err;
   }
 });
 
-app.use(logger('dev'));
+app.use(logger(config.logger));
 app.use(require('body-parser').json());
 app.use(express.static(path.join(__dirname, 'public')));
 
