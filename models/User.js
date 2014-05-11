@@ -1,10 +1,16 @@
 'use strict';
 
 var mongoose = require('mongoose');
+var util = require('../lib/util');
 
 var userSchema = mongoose.Schema({
   publicKey: String,
-  hash: String
+  guid: String
+});
+
+userSchema.pre('save', function (next) {
+  this.guid = util.generateGuid();
+  next();
 });
 
 module.exports = mongoose.model('User', userSchema);
