@@ -17,7 +17,7 @@ gulp.task('develop', function () {
   nodemon({ script: 'bin/www', ext: 'js' })
     .on('change', ['hint'])
     .on('restart', function () {
-      console.log('Restared!');
+      console.log('Restarted!');
     });
 });
 
