@@ -1,5 +1,5 @@
 'use strict';
-/* global before, after */
+/* global before, afterEach */
 var app = require('../server')
   , mongoose = require('mongoose')
   ;
@@ -12,17 +12,6 @@ before(function (done) {
   }
 });
 
-after(function (done) {
-  var connection = mongoose.connection;
-  if (!connection.name.match(/test/i)) {
-    done(new Error('Database name didn\'t contain test. Not dropping it.'));
-    return;
-  }
-  connection.db.dropDatabase(function (err) {
-    if (err) {
-      done(new Error('Error when dropping test db. ' + err));
-    } else {
-      done();
-    }
-  });
+afterEach(function (done) {
+  mongoose.connection.db.dropDatabase(done);
 });
