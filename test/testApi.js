@@ -1,8 +1,10 @@
 'use strict';
 /* global describe, it */
-var app = require('../server')
+var _ = require('lodash')
   , request = require('supertest')
+  , app = require('../server')
   , util = require('../lib/util')
+  , User = require('../models/User')
   , publicKey
   ;
 
@@ -27,7 +29,14 @@ describe('POST /users', function () {
           return 'Not a valid GUID!' + res.body;
         }
       })
-      .end(done);
+      .end(function (err, res) {
+        if (err) { return done(err); }
+        User.find({ guid: res.body.guid }, function (err, users) {
+          if (err) { return done(err); }
+          if (_.isEmpty(users)) { return done(new Error('User not found')); }
+          done();
+        });
+      });
   });
 
   it('fails with missing parameters', function (done) {
