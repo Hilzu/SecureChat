@@ -5,7 +5,7 @@ var router = require('express').Router()
   ;
 
 router.param('receiver_guid', function (req, res, next, guid) {
-  Message.find({receiver: guid}, function (err, messages) {
+  Message.find({ receiver: guid }, function (err, messages) {
     if (err) {
       return next(err);
     } else if (!messages) {
@@ -24,7 +24,7 @@ router.get('/:receiver_guid', function (req, res) {
 router.post('/', function (req, res) {
   var msg;
   if (!req.body.sender || !req.body.receiver || !req.body.message) {
-    res.json(400, {error: 'All parameters not given'});
+    res.json(400, { error: 'All parameters not given' });
   } else {
     msg = new Message({
       sender: req.body.sender,
@@ -34,7 +34,7 @@ router.post('/', function (req, res) {
     });
     msg.save(function (err, msg) {
       if (err) {
-        res.json(500, {error: err});
+        res.json(500, { error: err });
       } else {
         res.json(201, msg);
       }

@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp')
+  , jscs = require('gulp-jscs')
   , jshint = require('gulp-jshint')
   , nodemon = require('gulp-nodemon')
   , paths
@@ -25,4 +26,9 @@ gulp.task('hint', function () {
   gulp.src(paths.projectScripts)
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'));
+});
+
+gulp.task('jscs', function () {
+  gulp.src(paths.projectScripts)
+    .pipe(jscs());
 });

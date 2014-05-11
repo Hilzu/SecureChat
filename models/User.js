@@ -2,9 +2,10 @@
 
 var mongoose = require('mongoose')
   , util = require('../lib/util')
+  , userSchema
   ;
 
-var userSchema = mongoose.Schema({
+userSchema = mongoose.Schema({
   publicKey: String,
   guid: String
 });

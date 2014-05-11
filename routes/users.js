@@ -29,12 +29,12 @@ router.get('/:user_guid', function (req, res) {
 router.post('/', function (req, res) {
   var user;
   if (!req.body || !req.body.publicKey) {
-    res.json(400, {error: 'All parameters not given'});
+    res.json(400, { error: 'All parameters not given' });
   } else {
-    user = new User({publicKey: req.body.publicKey});
+    user = new User({ publicKey: req.body.publicKey });
     user.save(function (err, user) {
       if (err) {
-        res.json(500, {error: err});
+        res.json(500, { error: err });
       } else {
         res.json(201, user);
       }
