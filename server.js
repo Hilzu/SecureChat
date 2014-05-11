@@ -5,9 +5,8 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var path = require('path');
 
-var User = require('./models/User');
-var messages = require('./routes/message');
-var users = require('./routes/user');
+var messages = require('./routes/messages');
+var users = require('./routes/users');
 
 var app;
 var mongoUri;
@@ -26,26 +25,8 @@ app.use(logger('dev'));
 app.use(require('body-parser').json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.param('receiver', function (req, res, next, receiverId) {
-  req.receiver = receiverId;
-  next();
-});
-
-app.param('user_id', function (req, res, next, userId) {
-  User.find({hash: userId}, function (err, user) {
-    if (err) {
-      next(err);
-    } else {
-      req.user = user;
-    }
-  });
-});
-
-app.get('/messages/:receiver', messages.list);
-app.post('/messages', messages.add);
-
-app.get('/users/:user_id', users.get);
-app.post('/users', users.add);
+app.use('/users', users);
+app.use('/messages', messages);
 
 /// catch 404 and forwarding to error handler
 app.use(function (req, res, next) {
@@ -54,9 +35,12 @@ app.use(function (req, res, next) {
   next(err);
 });
 
-app.use(function (err, req, res) {
-  res.json(err.status, {error: err.message});
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.json({ error: err.message });
+  if (err.status !== 404) {
+    console.error(err.stack);
+  }
 });
-
 
 module.exports = app;

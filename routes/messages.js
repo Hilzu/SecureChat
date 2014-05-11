@@ -1,8 +1,26 @@
 'use strict';
 
+var router = require('express').Router();
 var Message = require('../models/Message.js');
 
-exports.add = function (req, res) {
+router.param('receiver_guid', function (req, res, next, guid) {
+  Message.find({receiver: guid}, function (err, messages) {
+    if (err) {
+      return next(err);
+    } else if (!messages) {
+      return next(new Error('Messages with receiver not found'));
+    }
+
+    req.messages = messages;
+    next();
+  });
+});
+
+router.get('/:receiver_guid', function (req, res) {
+  res.json(req.messages);
+});
+
+router.post('/', function (req, res) {
   var msg;
   if (!req.body.sender || !req.body.receiver || !req.body.message) {
     res.json(400, {error: 'All parameters not given'});
@@ -21,14 +39,6 @@ exports.add = function (req, res) {
       }
     });
   }
-};
+});
 
-exports.list = function (req, res) {
-  Message.find({receiver: req.params.receiver}, function (err, messages) {
-    if (err) {
-      res.json(500, {error: err});
-    } else {
-      res.json(messages);
-    }
-  });
-};
+module.exports = router;
