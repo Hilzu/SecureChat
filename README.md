@@ -26,6 +26,6 @@ the messages
     # Run tests
     npm test
 
-    # Watch for changes, restart server and check files with JSHint
+    # Watch for changes, restart server and check files with JSHint and JSCS
     npm install -g gulp
     gulp develop
