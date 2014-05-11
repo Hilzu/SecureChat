@@ -1,10 +1,12 @@
 'use strict';
 
-var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var nodemon = require('gulp-nodemon');
+var gulp = require('gulp')
+  , jshint = require('gulp-jshint')
+  , nodemon = require('gulp-nodemon')
+  , paths
+  ;
 
-var paths = {
+paths = {
   projectScripts: ['./bin/www', '**/*.js', '!node_modules/**', '!public/**']
 };
 

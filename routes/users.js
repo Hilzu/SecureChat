@@ -1,7 +1,8 @@
 'use strict';
 
-var router = require('express').Router();
-var User = require('../models/User.js');
+var router = require('express').Router()
+  , User = require('../models/User.js')
+  ;
 
 router.param('user_guid', function (req, res, next, guid) {
   User.find({guid: guid}, function (err, user) {

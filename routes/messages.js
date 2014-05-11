@@ -1,7 +1,8 @@
 'use strict';
 
-var router = require('express').Router();
-var Message = require('../models/Message.js');
+var router = require('express').Router()
+  , Message = require('../models/Message.js')
+  ;
 
 router.param('receiver_guid', function (req, res, next, guid) {
   Message.find({receiver: guid}, function (err, messages) {

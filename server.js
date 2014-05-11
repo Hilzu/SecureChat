@@ -1,15 +1,14 @@
 'use strict';
 
-var express = require('express');
-var logger = require('morgan');
-var mongoose = require('mongoose');
-var path = require('path');
-
-var messages = require('./routes/messages');
-var users = require('./routes/users');
-var config = require('./lib/config');
-
-var app;
+var express = require('express')
+  , logger = require('morgan')
+  , mongoose = require('mongoose')
+  , path = require('path')
+  , messages = require('./routes/messages')
+  , users = require('./routes/users')
+  , config = require('./lib/config')
+  , app
+  ;
 
 app = express();
 

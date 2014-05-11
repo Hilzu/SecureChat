@@ -1,7 +1,8 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var util = require('../lib/util');
+var mongoose = require('mongoose')
+  , util = require('../lib/util')
+  ;
 
 var userSchema = mongoose.Schema({
   publicKey: String,
