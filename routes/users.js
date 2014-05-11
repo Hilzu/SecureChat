@@ -1,19 +1,23 @@
 'use strict';
 
 var router = require('express').Router()
-  , User = require('../models/User.js')
+  , _ = require('lodash')
+  , User = require('../models/User')
+  , util = require('../lib/util')
   ;
 
 router.param('user_guid', function (req, res, next, guid) {
-  User.find({guid: guid}, function (err, user) {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return next(new Error('User not found'));
+  if (!util.isGuid(guid)) {
+    return next({ status: 400, message: 'Invalid GUID' });
+  }
+
+  User.find({ guid: guid }, function (err, users) {
+    if (err) { return next(err); }
+    if (_.isEmpty(users)) {
+      return next({ status: 404, message: 'User not found' });
     }
 
-    req.user = user;
+    req.user = users[0];
     next();
   });
 });
